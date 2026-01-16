@@ -1,0 +1,4 @@
+.venv/
+taxonomy/
+tracked_obs/
+config_private.json

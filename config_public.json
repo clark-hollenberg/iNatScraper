@@ -1,0 +1,28 @@
+{
+    "search_area": {
+        "place_id": 34,
+        "quality_grade": ["research", "needs_id"],
+        "days_back": 90,
+        "per_page": 200
+    },
+    "experts": {
+        "csv_file": "experts/experts_list_file_path.csv"
+    },
+    "taxonomy": {
+        "tracking_list": "taxonomy/tracking_list_path.csv",
+        "taxon_name_map": "taxonomy/taxon_name_mappings_path.csv",
+        "date_checked": "taxonomy/date_checked_path.csv"
+    },
+    "output": {
+        "folder": "tracked_obs",
+        "include_photos": false
+    },
+    "authentication": {
+                    "username": "",   
+                    "password": "",
+                    "app_id": "",
+                    "app_secret": "",
+                    "user_agent": "",
+                    "project":"YOUR-natural-heritage-program"
+                }
+}
