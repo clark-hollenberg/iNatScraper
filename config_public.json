@@ -2,7 +2,6 @@
     "search_area": {
         "place_id": 34,
         "quality_grade": ["research", "needs_id"],
-        "days_back": 90,
         "per_page": 200
     },
     "experts": {

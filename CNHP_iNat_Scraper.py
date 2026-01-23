@@ -460,20 +460,46 @@ class iNatScraper:
         for _, obs in observations_df.iterrows():
             obs_id = obs.get('id')
             taxon_id = obs.get('taxon.id')
-
+            iNat_sciname = obs.get('taxon.name', 'Unknown')
             # Pull the taxon mapping row ONCE
             tx_row = self.taxon_name_map.loc[
                 self.taxon_name_map["taxon_id"] == taxon_id
             ]
+            taxon_id = obs.get('taxon.id')
+            iNat_sciname = obs.get('taxon.name', 'Unknown')
 
-            # If taxon isn't found
+            # Try 1: lookup by taxon_id
+            tx_row = self.taxon_name_map.loc[
+                self.taxon_name_map["taxon_id"] == taxon_id
+            ]
+
+            # Try 2: lookup by iNat name
+            if tx_row.empty:
+                tx_row = self.taxon_name_map.loc[
+                    self.taxon_name_map["iNat_name"] == iNat_sciname
+                ]
+            # Try 3: fallback to binomial
+            if tx_row.empty and isinstance(iNat_sciname, str):
+                binomial = " ".join(iNat_sciname.split()[:2])
+                tx_row = self.taxon_name_map.loc[
+                    self.taxon_name_map["iNat_name"] == binomial
+                ]
+            
+            # Try 4: check on SNAME binomial
+            if tx_row.empty and isinstance(iNat_sciname, str):
+                binomial = " ".join(iNat_sciname.split()[:2])
+                tx_row = self.taxon_name_map.loc[
+                    self.taxon_name_map["SNAME"] == binomial
+                ]
+
+            # Still nothing?
             if tx_row.empty:
                 tx_values = {}
+                print(f"Warning: taxon name map not found for {iNat_sciname}.")
             else:
-                tx_row = tx_row.iloc[0]
-
-                # Extract all desired fields at once
+                tx_row = tx_row.iloc[0]  
                 tx_values = {
+                    "SNAME": tx_row.get("SNAME"),
                     "SCOMNAME": tx_row.get("SCOMNAME"),
                     "MAJOR_GRP": tx_row.get("MAJOR_GRP"),
                     "ELCODE": tx_row.get("ELCODE"),
@@ -485,6 +511,7 @@ class iNatScraper:
                     "OTHER_STATUS": tx_row.get("FEDSENS"),
                     "ENDEMIC": tx_row.get("ENDEMISM"),
                 }
+            
             # Add all observation fields plus tracking info
             base_obs_data = {
                 'observation_id': obs_id,
@@ -492,14 +519,7 @@ class iNatScraper:
                 'observer_username': obs.get('user.login', 'Unknown'),
                 'observer_fullname': obs.get('user.name', 'Unknown'),
                 'observer_user_id': obs.get('user.id', 'Unknown'),
-                'SNAME': self.taxon_name_map.loc[
-                                        self.taxon_name_map["taxon_id"] == obs.get('taxon.id'),
-                                        "SNAME"
-                                    ].iloc[0] if not self.taxon_name_map.loc[
-                                        self.taxon_name_map["taxon_id"] == obs.get('taxon.id'),
-                                        "SNAME"
-                                    ].empty else None,
-                'scientific_name': obs.get('taxon.name', 'Unknown'),
+                'scientific_name': iNat_sciname,
                 **tx_values,
                 'description': obs.get('description', 'Unknown'),
                 'observation_date': datetime.datetime.strptime(obs.get('observed_on'), '%Y-%m-%d').strftime('%Y-%m-%d'),
@@ -512,11 +532,7 @@ class iNatScraper:
                 'geoprivacy': obs.get('geoprivacy'),
                 'obscured': obs.get('obscured', False),
                 'taxon_geoprivacy': obs.get('taxon_geoprivacy'),
-                'private_location': obs.get('private_location'),
-                '_query_taxon_id': "'" + str(obs.get("_query_taxon_id")),
-                '_query_flag': obs.get("_query_flag"),
-                '_query_updated_since': obs.get("_query_updated_since"),
-                '_query_place_id': obs.get("_query_place_id")}
+                'private_location': obs.get('private_location')}
 
 
             # check if the observation has been expert reviewed.
