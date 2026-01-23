@@ -1,5 +1,6 @@
 # iNaturalist API tool for the NatureServe Network
-Written by Clark Hollenberg in 2025, adapting code from Kyle Kaskie at MTNHP.
+Written by Clark Hollenberg in 2025, adapting code from Kyle Kaskie at MTNHP.  
+**Basic Python knowledge is currently necessary to configure and run this tool. No major code edits should be required.**
 
 ## What it does:
 * Queries iNaturalist for observations matching a user defined tracking list within your jurisdiction.
@@ -23,7 +24,7 @@ Written by Clark Hollenberg in 2025, adapting code from Kyle Kaskie at MTNHP.
 * Date last searched for each species. We use this as a way to track which records we've already reviewed for Biotics. There are likely cleaner ways to do this.
 
 ## How to run it:
-* git pull
+* git clone 
 * configure Python interpreter
 * copy and update config.json file with your info
 * run build_taxon_ids.py
