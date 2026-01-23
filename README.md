@@ -24,7 +24,7 @@ Written by Clark Hollenberg in 2025, adapting code from Kyle Kaskie at MTNHP.
 * Date last searched for each species. We use this as a way to track which records we've already reviewed for Biotics. There are likely cleaner ways to do this.
 
 ## How to run it:
-* git clone 
+* git clone https://github.com/chollenb-cnhp/iNatScraper
 * configure Python interpreter
 * copy and update config.json file with your info
 * run build_taxon_ids.py
