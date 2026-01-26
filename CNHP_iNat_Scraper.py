@@ -504,6 +504,7 @@ class iNatScraper:
                     "MAJOR_GRP": tx_row.get("MAJOR_GRP"),
                     "ELCODE": tx_row.get("ELCODE"),
                     "SEID": tx_row.get("S_ELMT_ID"),
+                    "TRACK": tx_row.get("TRACK"),
                     "GRANK": tx_row.get("G_RANK"),
                     "SRANK": tx_row.get("S_RANK"),
                     "RND_GRANK": tx_row.get("RNDGRANK"),
