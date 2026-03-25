@@ -47,6 +47,9 @@ class iNatScraper:
         return pd.read_csv(self.config['experts']['csv_file'], encoding='latin1')
     
     def load_tracking_list(self) -> pd.DataFrame:
+
+        ### here is where tracking list can be filtered.
+        ### any new names must be compiled in build_taxon_ids.py
         tracking_list = pd.read_csv(self.config['taxonomy']['tracking_list'], encoding='latin1')
         return tracking_list
     
@@ -142,7 +145,10 @@ class iNatScraper:
         print(f"Tracking {len(scientific_names)} species")
 
         # Precompute S_ELMT_ID lookup set for faster matching
-        date_id_set = set(self.taxon_date_map["S_ELMT_ID"].astype(str))
+        if self.taxon_date_map != {}:
+            date_id_set = set(self.taxon_date_map["S_ELMT_ID"].astype(str))
+        else:
+            date_id_set = []
 
         # Initialize output containers
         individual_requests = []
