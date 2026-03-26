@@ -54,7 +54,7 @@ class iNatScraper:
         return tracking_list
     
     def load_taxon_name_map(self) -> pd.DataFrame:
-        taxon_name_map = pd.read_csv(self.config['taxonomy']['taxon_name_map'])
+        taxon_name_map = pd.read_csv(self.config['taxonomy']['taxon_name_map'], encoding='latin1')
         taxon_name_map = taxon_name_map[taxon_name_map["taxon_id"].notna()]
         return taxon_name_map
 
@@ -93,21 +93,9 @@ class iNatScraper:
             return ""
         
         try:
-            site = "https://www.inaturalist.org"
-            payload = {
-                'client_id': app_id,
-                'client_secret': app_secret,
-                'grant_type': "password",
-                'username': username,
-                'password': password
-            }
-
-            # Get OAuth access token
-            access_token = requests.post(f"{site}/oauth/token", data=payload).json()["access_token"]
-            headers = {"Authorization": f"Bearer {access_token}"}
-            # Get API token
-            api_token = requests.get(f"{site}/users/api_token", headers=headers).json()["api_token"]
+            api_token = auth_config.get('api_token', '').strip()
             return api_token
+
 
         except Exception as e:
             print(f"Error getting OAuth2 access token: {e}")
