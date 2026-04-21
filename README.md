@@ -22,6 +22,24 @@ Written by Clark Hollenberg in 2025, adapting code from Kyle Kaskie at MTNHP.
     * found by searching your state on the explore page and viewing URL. Ex: Colorado = 34. https://www.inaturalist.org/observations?place_id=34.
 ### Optional input:
 * Date last searched for each species. We use this as a way to track which records we've already reviewed for Biotics. There are likely cleaner ways to do this.
+* iNaturalist api token. This is required if you are using an iNat "app" for downloading private coordinates from trusting observers. The permissions changed around 3/31/2026 and my automated authentification process no longer works. The manual work around is to update api_token once every 24 hours (or if run fails) by accessing https://www.inaturalist.org/users/api_token (when logged in). Copy the text within the quotation marks into the config_private.json into “api_token” (row 24). Previous code used to authenticate was as follows:
+'''python
+site = "https://www.inaturalist.org"
+            payload = {
+                'client_id': app_id,
+                'client_secret': app_secret,
+                'grant_type': "password",
+                'username': username,
+                'password': password
+            }
+
+            # Get OAuth access token
+            access_token = requests.post(f"{site}/oauth/token", data=payload).json()["access_token"]
+            headers = {"Authorization": f"Bearer {access_token}"}
+            # Get API token
+            api_token = requests.get(f"{site}/users/api_token", headers=headers).json()["api_token"]
+            return api_token
+'''
 
 ## How to run it:
 * git clone https://github.com/chollenb-cnhp/iNatScraper.git
@@ -30,6 +48,7 @@ Written by Clark Hollenberg in 2025, adapting code from Kyle Kaskie at MTNHP.
 * run build_taxon_ids.py
   * review output for any var. or ssp. input names
   * recommended to review output for species complexes or other issues (see iNat names column)
+  * you may need to build a manual taxon mapping for a few select species which do not automatically translate. Make sure to save this in a separate .csv file so you can merge it in afterwards.
 * run CNHP_iNat_Scraper.py
 * view saved files in tracked_obs folder
   * observations_for_review contains all obs with unobscured coordinates
