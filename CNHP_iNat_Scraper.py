@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """
 iNaturalist API download for tracked species
 
@@ -85,9 +86,9 @@ class iNatScraper:
         username = auth_config.get('username', '').strip()
         password = auth_config.get('password', '').strip()
         app_id = auth_config.get('app_id', '').strip()
-        app_secret = auth_config.get('app_secret', '').strip()
+        api_token = auth_config.get('api_token', '').strip()
         
-        if not all([username, password, app_id, app_secret]):
+        if not all([username, password, app_id, api_token]):
             print("Error: Missing OAuth2 credentials in config file")
             print("Required: username, password, app_id, app_secret")
             return ""
@@ -133,7 +134,7 @@ class iNatScraper:
         print(f"Tracking {len(scientific_names)} species")
 
         # Precompute S_ELMT_ID lookup set for faster matching
-        if self.taxon_date_map != {}:
+        if isinstance(self.taxon_date_map, pd.DataFrame):
             date_id_set = set(self.taxon_date_map["S_ELMT_ID"].astype(str))
         else:
             date_id_set = []
@@ -491,7 +492,15 @@ class iNatScraper:
                 tx_values = {}
                 print(f"Warning: taxon name map not found for {iNat_sciname}.")
             else:
-                tx_row = tx_row.iloc[0]  
+                tx_row = tx_row.iloc[0] 
+
+                # get element id from taxon_name_map to pull element data from tracking_list
+                element_id = tx_row.get("S_ELMT_ID")
+                tx_row = self.tracking_list.loc[
+                                self.tracking_list["S_ELMT_ID"] == element_id
+                            ]
+                tx_row = tx_row.iloc[0] 
+                 
                 tx_values = {
                     "SNAME": tx_row.get("SNAME"),
                     "SCOMNAME": tx_row.get("SCOMNAME"),
@@ -595,15 +604,14 @@ class iNatScraper:
         final_review_df["CONC_FEAT_"] = "Point"
         final_review_df["SF_TYPE"] = "Point"
 
-        has_name = final_review_df["observer_fullname"].notna() & len(final_review_df["observer_fullname"])>1
 
-        # Extract first and last names where available
-        final_review_df.loc[has_name, "first_name"] = final_review_df.loc[has_name, "observer_fullname"].str.split().str[0]
-        final_review_df.loc[has_name, "last_name"] = final_review_df.loc[has_name, "observer_fullname"].str.split().str[-1]
+        # extract first and last name if present in observation
+        names = final_review_df["observer_fullname"].str.split()
 
-        # Fallbacks when observer_fullname is missing
-        final_review_df.loc[~has_name, "first_name"] = np.nan
-        final_review_df.loc[~has_name, "last_name"] = np.nan
+        has_name = names.str.len().gt(1)
+
+        final_review_df["first_name"] = names.str[0].where(has_name)
+        final_review_df["last_name"] = names.str[-1].where(has_name)
 
         # --- Derived descriptive fields ---
         # DESCRIPTOR: "LastName YYYY" or "username YYYY" if name missing
@@ -634,7 +642,14 @@ class iNatScraper:
 
         # REP_ACC: "High" if <50 m
         final_review_df["REP_ACC"] = np.where(
-            final_review_df["DISTANCE"] > 50, "High", "Negligible"
+            final_review_df["DISTANCE"] < 50, "High", "Negligible"
+        )
+
+        # VISIT_NOTES - based on description
+        final_review_df["VISIT_NOTES"] = np.where(
+            final_review_df["description"].isna(),
+            "Photo on iNaturalist.",
+            "Photo on iNaturalist. " + final_review_df["description"]
         )
 
         print(f"Categorized observations:")
