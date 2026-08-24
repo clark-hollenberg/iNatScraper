@@ -466,7 +466,7 @@ Michael Menefee,michaelmenefee,Michael Menefee,510278,Current,Colorado Natural H
 Michael Nelson,michaelnelson3,Michael Nelson,2808185,Current,Massachusetts Natural Heritage & Endangered Species Program,Invertebrate Zoologist,,,,,NatureServe Network Staff List,211,0,161,
 Michael Rudy,michaelrudy,Michael Rudy,2386516,No,,,Lichens|Bryophytes|Algae,NL%|NF%|NA%,,,Canadian Node Expert List,1663,739,922,curator
 Michelle Weschler,michelle49,Michelle Weschler,213964,Current,Wyoming Natural Diversity Database,Assistant Invertebrate Zoologist,Insects|Lepidoptera,II%,,,2024 Network Survey,1,0,1,
-Mihail Kennedy,mihail,Mihail Kennedy,167819,No,,,Vascular Plants,P%,,,MTNHP Expert List,585,278,432,
+Mihail Kennedy,mihail,Mihail Kennedy,167819,No,,,Vascular Plants,,,,MTNHP Expert List,585,278,432,removed by CNHP 4/29/26 - not sure if trust IDs
 Mike Miller,mike_miller,,3636442,No,,Consulting Plant Ecologist,Vascular Plants,P%,,,Canadian Node Expert List,288,142,243,
 Mike Burrell,mikeburrell,Mike V.A. Burrell,5967,Current,Ontario Natural Heritage Information Centre,Provincial Zoologist - Vertebrates,,,,,NatureServe Network Staff List,18252,33586,3541,curator
 Mike Leahy,mikeleahy,Mike Leahy,3362499,Current,Missouri Natural Heritage Program,Natural Community Ecologist,,,,,NatureServe Network Staff List,115,0,47,
@@ -718,7 +718,7 @@ Caitlin Willier,whiskeyjack,Caitlin Willier,1065961,Current,Yukon Conservation D
 Alan Weakley,whiteoak,Alan Weakley,18327,No,,,Plants,P%|NB%|NA%,,,MBP Expert List,28109,18723,6030,curator
 Fiona Brooks,wild_and_fi,Fiona Brooks,1391825,No,,,lichens,NL%,,,Canadian Node Expert List,494,118,338,
 John Vanek,wild_ecology,"John P. Vanek, PhD",26063,Current,New York Natural Heritage Program,Zoologist,,,,,NatureServe Network Staff List,3261,1240,433,
-Jared Gorrell,wildlander,Jared Gorrell,395895,No,Southeastern Grasslands Institute,Field Botanist,Vascular Plants|Reptiles|Amphibians|Fish (freshwater)|Birds,P%|AR%|AA%|AF%|AB%,Major expertise limited to Eastern U.S.,,2024 Network Survey,98739,141177,11235,curator
+Jared Gorrell,wildlander,Jared Gorrell,395895,No,Southeastern Grasslands Institute,Field Botanist,Vascular Plants|Reptiles|Amphibians|Fish (freshwater)|Birds,AR%|AA%|AF%|AB%,Major expertise limited to Eastern U.S. (CNHP removed P% plants),,2024 Network Survey,98739,141177,11235,curator
 Dwight Johnson,wildwabbet,Dwight Johnson,68792,No,,,Plants,P%|NB%|NA%,,,MBP Expert List,1570,3857,474,
 Will Chatfield-Taylor,willc-t,Will Chatfield-Taylor,443199,No,,,Cicadas,IIHEM%,,,MBP Expert List,892,24009,760,curator
 William Busby,william2584,William Busby,7311099,Current,Kansas Natural Heritage Inventory,Zoologist,,,,,NatureServe Network Staff List,0,0,0,
@@ -755,7 +755,7 @@ Margaret Krichbaum,margaret_eaglecap,,,,,,Plants - temp,P%,,,,,,,
 Mark Egger,markegger,,,,,,Plants - temp,P%,,,,,,,
 Martin Purdy,mdpurdy,,,,,,Plants - temp,P%,,,,,,,
 Michael G. Simpson,miguelgrande,,,,,,Plants - temp,P%,,,,,,,
-Mihail Knjasev,mihail13,,,,,,Plants - temp,P%,,,,,,,
+Mihail Knjasev,mihail13,,,,,,Plants - temp,,,,,,,,removed by CNHP 4/29/26 - not sure trust IDs - also on Montana trusted list
 Mark Fishbein,milkweedguy,,,,,,Plants - temp,P%,,,,,,,
 Chris Coshland,mossgeek,,,,,,Bryophytes/Lichens,NB%|NL%,,,,,,,
 Naomi Fraga,naomibot,,,,,,Plants - temp,P%,,,,,,,
@@ -765,7 +765,7 @@ Pam Smith,pamsmithcnhp,,,,,,Vascular Plants,P%,,,,,,,
 Peggy Lyon,peggy5,,,,,,Vascular Plants,P%,,,,,,,
 Phil Krening,pkrening,,,,,,Vascular Plants,P%,,,,,,,
 Jeffrey Rose,polemoniaceae,,,,,,Plants - temp,P%,,,,,,,
-Thomas Bergman,popmybladderpod,,,,,,Plants - temp,P%,,,,,,,
+Thomas Bergman,popmybladderpod,,,,,,Plants - temp,,,,,,,,removed by gd 4/29/26
 Barbara L. Wilson,sedgequeen,,,,,,Plants - temp,P%,,,,,,,
 Steve McKee,smmckee,,,,,,Ferns/Lycophytes,P%|NB%,,,,,,,
 Susan Panjabi,susan_panjabi,,,,,,Vascular Plants,P%,,,,,,,
@@ -787,8 +787,8 @@ Hayden Lewis,hayden_l,,,,COPARC,,Herps,AR%|AA%,,,,,,,
 Travis Whelan,travis_whalen,,,,COPARC,,Herps,AR%|AA%,,,,,,,
 Liam Hopkins,colorado_crustaceans,,,,COPARC,,Herps,AR%|AA%,,,,,,,
 Tyler Lovato,tjlovato,,,,CNHP/COPARC,,Herps,AR%|AA%,,,,,,,
-Tyler Lovato,laurenlivo,,,,COPARC,,Herps,AR%|AA%,,,,,,,
-Michael Weissmann,culextarsalis,,,,,,inverts,II%,,,"Chief Entomologist at Vector Disease Control International, Denver, Colorado",,,,
+Lauren Livo,laurenlivo,,,,COPARC,,Herps,AR%|AA%,,,,,,,
+Michael Weissmann,culextarsalis,,,,,,Insects,II%,,,"Chief Entomologist at Vector Disease Control International, Denver, Colorado",,,,
 Remi Pattyn,remipjgpattyn,,,,COPARC,,Herps,AR%|AA%,,,,,,,
 Caleb Camilleri,calebcam,,,,,,"Herps, inverts (jumping spiders)",AR%|AA%|I%,,,jumping spider specialist,,,,
 Tim Warfel,highplainsdrifter,,,,COPARC,,Herps,AR%|AA%,,,,,,,

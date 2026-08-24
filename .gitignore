@@ -1,5 +1,7 @@
 .venv/
 .vscode/
 taxonomy/
+Shapefiles/
+Archive/
 tracked_obs/
 config_private.json
